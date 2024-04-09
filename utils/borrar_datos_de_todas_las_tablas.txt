@@ -1,0 +1,8 @@
+SET FOREIGN_KEY_CHECKS = 0;
+ 
+-- Borrar los datos de todas las tablas
+SELECT concat('TRUNCATE TABLE ', table_name, ';') 
+FROM information_schema.tables
+WHERE table_schema = 'test_data_base';
+
+SET FOREIGN_KEY_CHECKS = 1;

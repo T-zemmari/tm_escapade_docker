@@ -1,0 +1,45 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteCond %{REQUEST_URI} ^/index\.php [OR]
+    RewriteCond %{REQUEST_URI} ^/index$
+    RewriteRule ^ / [R=301,L]
+
+    # Si la solicitud no es para un directorio existente
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Si la solicitud no es para un archivo existente
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    RewriteRule ^admin_login(/.*)?$ /admin/pages/admin_login.php$1 [L]
+
+    RewriteRule ^admin_registro(/.*)?$ /admin/pages/admin_registro.php$1 [L]
+
+    RewriteRule ^admin_perfil(/.*)?$ /admin/pages/admin_perfil.php$1 [L]
+
+    RewriteRule ^sobre_nosotros(/.*)?$ /sobre_nosotros.php$1 [L]
+
+    RewriteRule ^blog(/.*)?$ /blog.php$1 [L]
+
+    RewriteRule ^contacto(/.*)?$ /contacto.php$1 [L]
+    RewriteRule ^tienda(/.*)?$ /tienda.php$1 [L]
+
+    RewriteRule ^servicios(/.*)?$ /servicios.php$1 [L]
+    RewriteRule ^para_empresas(/.*)?$ /para_empresas.php$1 [L]
+
+    RewriteRule ^circuitos_y_ofertas(/.*)?$ /circuitos_y_ofertas.php$1 [L]
+    RewriteRule ^tours_y_circuitos(/.*)?$ /tours_y_circuitos.php$1 [L]
+    RewriteRule ^info_serv(/.*)?$ /info_serv.php$1 [L]
+    RewriteRule ^login(/.*)?$ /registro_login.php$1 [L]
+    RewriteRule ^logout(/.*)?$ /logout.php$1 [L]
+    #RewriteRule ^login(/.*)?$ /register_login.php$1 [L]
+
+    RewriteRule ^videos(/.*)?$ /videos.php$1 [L]
+    RewriteRule ^cesta(/.*)?$ /cesta.php$1 [L]
+
+
+    AddDefaultCharset UTF-8
+
+</IfModule>
+
