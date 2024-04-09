@@ -1,0 +1,121 @@
+.contenedor_img_avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: -2px;
+  background-image: url("../../assets/images/iconos/avatar_user_4.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  position: relative;
+}
+.contenedor_img_carrito {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: -2px;
+  background-image: url("../../assets/images/iconos/carrito_3.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.contenedor_img_avatar a,
+.contenedor_img_carrito a {
+  all: unset;
+}
+
+.contenedor_img_avatar a:hover,
+.contenedor_img_carrito a:hover {
+  all: unset;
+}
+
+.contenedor_registro_login {
+  width: 100%;
+  min-height: 100vh;
+  padding: 250px;
+}
+.row_custom {
+  margin-top: 80px !important;
+}
+
+.contenedor_login_header {
+  width: 100%;
+  height: 10%;
+  padding: 20px;
+}
+
+.contenedor_login_body {
+  width: 100%;
+  height: 90%;
+  padding: 20px;
+}
+.contenedor_registro_header {
+  width: 100%;
+  height: 10%;
+  padding: 20px;
+}
+.contenedor_registro_body {
+  width: 100%;
+  height: 90%;
+  padding: 20px;
+}
+
+.contenedor_menu_avatar {
+  position: absolute;
+  width: 250px;
+  height: 200px;
+  border: 1px solid #e1dada;
+  border-radius: 6px;
+  top: 34px;
+  right: -104px;
+  background-color: #fff;
+  z-index: 100000000;
+  display: none;
+
+}
+
+.divider_horizontal {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  /*margin: 10px 0;*/
+}
+.divider_vertical {
+  width: 1px;
+  height: 100%;
+  background-color: #ccc;
+  margin: 10px 0;
+}
+.menu_user_avatar {
+  list-style-type: none;
+  padding: 5px !important;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 100%;
+}
+.menu_user_avatar .menu_li_custom {
+  font-size: 13px;
+  padding: 8px 20px;
+  width: 100%;
+  color: #575050;
+  text-align: start;
+  border-radius: 0px;
+  /* margin-top: 4px; */
+}
+.menu_user_avatar .menu_li_custom:hover {
+  background-color: antiquewhite;
+  border-radius: 0px;
+}
+.custom_menu_avatar_a {
+  all: unset !important;
+  width: 100%;
+  height: 100%;
+}
+.custom_menu_avatar_a:hover {
+  all: unset !important;
+}

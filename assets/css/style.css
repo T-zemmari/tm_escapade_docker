@@ -234,7 +234,7 @@ button {
 .header_section {
     width: 100%;
     float: left;
-    background-image: url(../../assets/images/custom_img/m_5.jpg);
+    background-image: url('../../assets/images/custom_img/m_5.jpg');
     height: auto;
     background-size: 100%;
     padding: 0px 0px 20px 0px;
