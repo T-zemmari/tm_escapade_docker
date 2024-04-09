@@ -5,7 +5,13 @@ FROM php:8-apache
 RUN apt-get update \
     && apt-get install -y \
         libzip-dev \
-    && docker-php-ext-install -j$(nproc) zip pdo_mysql \
+        zlib1g-dev \
+        libpq-dev \
+        libjpeg-dev \
+        libpng-dev \
+        libfreetype6-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd zip pdo_mysql mysqli \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -15,6 +21,7 @@ RUN apt-get update \
         unzip \
     && rm -rf /var/lib/apt/lists/*
 
+# Instala Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Copia los archivos de la aplicación al directorio de trabajo del contenedor

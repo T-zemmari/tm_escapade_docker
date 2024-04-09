@@ -10,8 +10,8 @@ $db_user = $_ENV['DB_USER'];
 $db_pass = $_ENV['DB_PASSWORD'];
 $db_name = $_ENV['DB_DATABASE'];
 
-define('STRIPE_KEY',$_ENV['STRIPE_KEY']);
-define('STRIPE_KEY_PUBLIC',$_ENV['STRIPE_KEY_PUBLIC']);
+// define('STRIPE_KEY',$_ENV['STRIPE_KEY']);
+// define('STRIPE_KEY_PUBLIC',$_ENV['STRIPE_KEY_PUBLIC']);
 
 $isLocal = ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_NAME'] === '127.0.0.1' || $_SERVER['SERVER_NAME'] === 'escapade.com');
 
