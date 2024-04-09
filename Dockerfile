@@ -15,6 +15,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Habilita el módulo mod_rewrite de Apache
+RUN a2enmod rewrite
+
 # Instala la biblioteca dotenv
 RUN apt-get update \
     && apt-get install -y \
@@ -27,11 +30,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Copia los archivos de la aplicación al directorio de trabajo del contenedor
 COPY . /var/www/html
 
-# Instala las dependencias de Composer
-RUN composer install --no-dev
-
 # Copia el archivo .env al directorio de trabajo del contenedor
 COPY .env /var/www/html
+
+# Copia el archivo .htaccess al directorio de trabajo del contenedor
+COPY .htaccess /var/www/html/
 
 # Establece los permisos adecuados en el directorio de trabajo
 RUN chown -R www-data:www-data /var/www/html
@@ -42,5 +45,5 @@ RUN mkdir -p /var/lib/mysql
 # Exponer el puerto 80
 EXPOSE 80
 
-# Iniciar Apache en primer plano al ejecutar el contenedor
-CMD ["apache2-foreground"]
+# Reiniciar Apache al iniciar el contenedor
+CMD ["apachectl", "-D", "FOREGROUND"]
