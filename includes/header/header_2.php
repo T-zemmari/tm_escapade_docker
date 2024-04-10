@@ -121,6 +121,42 @@ EOD;
     }
 }
 
+$obtener_elementos_resto_de_vistas = info_elementos_vista();
+$obtener_servicios  = bn_obtener_servicios_circuitos();
+$info_testimonios = info_testimonios();
+
+$mostrar_carousel_rotativo_vista_sobre_nosotros_1 = false;
+$info_contenido_carousel_rotativo_vista_sobre_nosotros_1 = $obtener_elementos_resto_de_vistas['sobre_nosotros_elemento_carousel_rotativo_1'] ?? '';
+if ($info_contenido_carousel_rotativo_vista_sobre_nosotros_1 != '') {
+    if ($info_contenido_carousel_rotativo_vista_sobre_nosotros_1['activo'] == true) {
+        $mostrar_carousel_rotativo_vista_sobre_nosotros_1 = true;
+    }
+}
+
+$mostrar_carousel_vista_servicios_1 = false;
+$info_mostrar_carousel_vista_servicios_1 = $obtener_elementos_resto_de_vistas['servicios_elemento_carousel_1'] ?? '';
+if ($info_mostrar_carousel_vista_servicios_1 != '') {
+    if ($info_mostrar_carousel_vista_servicios_1['activo'] == true) {
+        $mostrar_carousel_vista_servicios_1 = true;
+    }
+}
+
+$header_background = '';
+$info_header_background = $obtener_elementos_resto_de_vistas['header_section_escritorio'] ?? '';
+if ($info_header_background != '') {
+    if ($info_header_background['activo'] == true && $info_header_background['contenido'] != '') {
+        $header_background = str_replace('/admin', 'admin', $info_header_background['contenido']);
+    }
+}
+
+$mostrar_form_contacto = false;
+$info_mostrar_form_contacto = $obtener_elementos_resto_de_vistas['contenedor_formulario_cantato'] ?? '';
+if ($info_mostrar_form_contacto != '') {
+    if ($info_mostrar_form_contacto['activo'] == true) {
+        $mostrar_form_contacto = true;
+    }
+}
+
 
 
 
