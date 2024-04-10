@@ -1,11 +1,13 @@
 <?php
 include 'config/config.php';
 include 'includes/funciones/funciones_varias.php';
-session_start();
+//session_start();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+
+$mensaje_enviar_email='';
 
 ?>
 
