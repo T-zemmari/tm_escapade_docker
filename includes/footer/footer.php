@@ -19,7 +19,7 @@
           </div>
           <div class="location_main">
               <div class="call_text"><img src="assets/images/call-icon.png"></div>
-              <div class="call_text"><a>+34 670645462</a></div>
+              <div class="call_text"><a>+34 669217903</a></div>
               <div class="call_text"><img src="assets/images/mail-icon.png"></div>
               <div class="call_text"><a href="mailto:info@tmescapade.com">info@tmescapade.com</a></div>
           </div>
