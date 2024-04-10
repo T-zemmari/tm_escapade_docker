@@ -29,6 +29,7 @@ function enviar_datos_fiscales() {
             console.log(response);
             try {
                 let respuesta = JSON.parse(response);
+                console.log('nuevos datos_fiscales',respuesta);
                 if (respuesta.status && respuesta.status == 'success') {
                     window.location.href = "?pagina=datos_fiscales";
                 }

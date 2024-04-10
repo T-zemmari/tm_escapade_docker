@@ -203,7 +203,7 @@ function bt_obtener_info_admin($admin_id)
 }
 
 
-function bn_obtener_datos_ficales()
+function bn_obtener_datos_fiscales()
 {
     $datos = [];
     $datos['resto_de_direcciones'] = [];
