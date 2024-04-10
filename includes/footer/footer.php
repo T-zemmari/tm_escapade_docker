@@ -111,6 +111,7 @@
   <script src="assets/js/swal.js"></script>
   <script src="assets/js/control_audio.js"></script>
   <script src="assets/js/jquery.magnific-popup.js"></script>
+  <script src="assets/js/my_scripts/mi_script_.js"></script>
 
   </body>
 
