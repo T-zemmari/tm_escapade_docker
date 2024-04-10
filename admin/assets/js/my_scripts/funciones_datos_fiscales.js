@@ -4,9 +4,14 @@ $(document).ready(function () {
         enviar_datos_fiscales();
     });
     $('#btn_modificar_datos_fiscales').on('click', function () {
-        editar_datos_fiscales();
+        let datos_fiscales_id = $(this).attr('datos_fiscales_id');
+        editar_datos_fiscales(datos_fiscales_id);
     });
-  
+
+    $('#btn_guardar_nueva_direccion_fiscal').on('click', function () {
+        let datos_fiscales_id = $(this).attr('datos_fiscales_id');
+        nueva_direccion_fiscal(datos_fiscales_id);
+    });
 
 })
 
@@ -29,7 +34,7 @@ function enviar_datos_fiscales() {
             console.log(response);
             try {
                 let respuesta = JSON.parse(response);
-                console.log('nuevos datos_fiscales',respuesta);
+                console.log('nuevos datos_fiscales', respuesta);
                 if (respuesta.status && respuesta.status == 'success') {
                     window.location.href = "?pagina=datos_fiscales";
                 }
@@ -46,7 +51,11 @@ function enviar_datos_fiscales() {
     });
 }
 
-function editar_datos_fiscales() {
+function editar_datos_fiscales(id) {
+
+    $(`#modal_datos_fiscales_${id}`).modal('show');
+
+    console.log(id);
 
     let form = document.getElementById('form_datos_fiscales_modificar');
     let adress_id = $(`#input_hidden_adress_id`).val();
@@ -90,11 +99,19 @@ function editar_datos_fiscales() {
     });
 }
 
-function validar_documento() {
+function validar_documento(id=null) {
 
     let tipo_documento = $(`#select_tipo_de_documento`).val();
     let documento = $(`#documento_id`).val();
     let mensajeContainer = $(`#documento_id`).siblings('.fv-plugins-message-container');
+
+    if (id!=undefined && id != null && id!='') {
+        tipo_documento = $(`#select_tipo_de_documento_${id}`).val();
+        documento = $(`#documento_id_${id}`).val();
+        mensajeContainer = $(`#documento_id_${id}`).siblings('.fv-plugins-message-container');
+    }
+
+
 
     // Verificar si el documento_id está vacío
     if (documento.trim() === '') {
@@ -178,6 +195,134 @@ function validarNIE(nie) {
         return true;
     }
 }
+
+
+function nueva_direccion_fiscal(id_datos_fiscales) {
+    let formData = new FormData(document.getElementById('form_datos_nueva_direccion'));
+    formData.append('accion', 'nueva_direccion_fiscal');
+    formData.append('id_datos_fiscales', id_datos_fiscales);
+
+    // Realizar la petición AJAX
+    $.ajax({
+        url: '/admin/controlador/ajax/funciones_datos_fiscales.php',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+            $('#btn_guardar_nueva_direccion_fiscal').prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Guardando...');
+        },
+        success: function (response) {
+            console.log(response);
+            try {
+                let respuesta = JSON.parse(response);
+                console.log('nueva_direccion_fiscal', respuesta);
+                if (respuesta.status && respuesta.status == 'success') {
+                    $(`#modal_nueva_direccion_fiscal_${id_datos_fiscales}`).modal('hide');
+                    window.location.href = "?pagina=datos_fiscales";
+                }
+            } catch (error) {
+                console.error('Error al parsear la respuesta JSON:', error);
+            }
+        },
+        error: function (error) {
+            console.error('Error en la petición AJAX:', error);
+        },
+        complete: function () {
+            $('#btn_guardar_nueva_direccion_fiscal').prop('disabled', false).html('<span class="indicator-label">Guardar datos</span>');
+        }
+    });
+}
+
+
+function modificar_direccion_empresa(id) {
+
+    Swal.fire({
+        html: `<h4 style="margin-top:25px;"><strong> ¿ Seguro que quieres modificar ? </strong></h4>`,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "Modificar",
+        denyButtonText: `Cancelar`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let formData = new FormData(document.getElementById(`form_editar_direccion_${id}`));
+            formData.append('accion', 'editar_direccion_fiscal');
+            formData.append('adress_id', id);
+            formData.append('id_datos_fiscales', $(`#input_hidden_id_datos_fiscales_${id}`).val());
+            // Realizar la petición AJAX
+            $.ajax({
+                url: '/admin/controlador/ajax/funciones_datos_fiscales.php',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    $(`#btn_editar_direccion_fiscal_${id}`).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Guardando...');
+                },
+                success: function (response) {
+                    console.log(response);
+                    try {
+                        let respuesta = JSON.parse(response);
+                        console.log('nueva_direccion_fiscal', respuesta);
+                        if (respuesta.status && respuesta.status == 'success') {
+                            $(`#modal_editar_direccion_fiscal_${id}`).modal('hide');
+                            window.location.href = "?pagina=datos_fiscales";
+                        }
+                    } catch (error) {
+                        console.error('Error al parsear la respuesta JSON:', error);
+                    }
+                },
+                error: function (error) {
+                    console.error('Error en la petición AJAX:', error);
+                },
+                complete: function () {
+                    $(`#btn_editar_direccion_fiscal_${id}`).prop('disabled', false).html('<span class="indicator-label">Guardar datos</span>');
+                }
+            });
+        }
+    });
+}
+
+function eliminar_direccion_empresa(id) {
+
+    Swal.fire({
+        html: `<h4 style="margin-top:25px;"><strong> ¿ Seguro que quieres eliminar ? </strong></h4>`,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "Eliminar",
+        denyButtonText: `Cancelar`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            console.log('Click eliminar ', id);
+
+            try {
+                $.post('/admin/controlador/ajax/funciones_datos_fiscales.php', {
+                    'accion': 'eliminar_direccion',
+                    'id': id,
+                }, function (result) {
+                    let respuesta = JSON.parse(result);
+                    if (respuesta.status != 'success') {
+                        Swal.fire({
+                            html: `<h4 style="margin-top:25px"><strong>${respuesta.message}</strong></h4>`,
+                            icon: "error",
+                        });
+                    } else {
+                        $(`#tr_direccion_${id}`).hide(100);
+                        Swal.fire({
+                            html: `<h4 style="margin-top:25px"><strong>Dirección eliminada correctamente</strong></h4>`,
+                            icon: "success",
+                        });
+                    }
+                })
+            } catch (error) {
+                console.log('error');
+                console.error(error);
+            }
+
+        }
+    });
+}
+
 
 
 

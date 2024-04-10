@@ -26,7 +26,7 @@
                             </div>
 
                             <span data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="Edit customer details" data-kt-initialized="1">
-                                <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#modal_datos_fiscales_1">
+                                <a  class="btn btn-sm btn-light-primary" datos_fiscales_id="<?= $datos_fiscales['id'] ?? '' ?>" data-bs-toggle="modal" data-bs-target="#modal_datos_fiscales_<?= $datos_fiscales['id'] ?? '' ?>">
                                     Editar
                                 </a>
                             </span>
@@ -326,7 +326,7 @@
                                                             </div>
                                                             <div class="col-xl-4 col-md-4 col-sm-12">
                                                                 <label class=" form-label">Tipo del documento</label>
-                                                                <select class="form-select mb-2" name="select_tipo_de_documento" id="select_tipo_de_documento_modificar" onchange="validar_documento()">
+                                                                <select class="form-select mb-2" name="select_tipo_de_documento" id="select_tipo_de_documento_<?= $datos_fiscales['id'] ?? '' ?>" onchange="validar_documento('<?= $datos_fiscales['id'] ?? '' ?>')">
                                                                     <option value="" selected="selected">Seleccionar</option>
                                                                     <option value="cif" data-select2-id="select2-data-135-ttuo" <?= isset($datos_fiscales['document_type']) && $datos_fiscales['document_type'] == 'cif' ? 'selected' : '' ?>>CIF</option>
                                                                     <option value="dni" data-select2-id="select2-data-136-g08t" <?= isset($datos_fiscales['document_type']) && $datos_fiscales['document_type'] == 'dni' ? 'selected' : '' ?>>DNI</option>
@@ -335,7 +335,7 @@
                                                             </div>
                                                             <div class="col-xl-4 col-md-4 col-sm-12">
                                                                 <label class="form-label">Nº Documento</label>
-                                                                <input type="text" name="documento_id" id="documento_id_modificar" class="form-control mb-2" placeholder="Documento" onkeyup="validar_documento()" value="<?= $datos_fiscales['document_id'] ?? '' ?>">
+                                                                <input type="text" name="documento_id" id="documento_id_<?= $datos_fiscales['id'] ?? '' ?>" class="form-control mb-2" placeholder="Documento" onkeyup="validar_documento('<?= $datos_fiscales['id'] ?? '' ?>')" value="<?= $datos_fiscales['document_id'] ?? '' ?>">
                                                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                                                             </div>
                                                         </div>
@@ -430,7 +430,7 @@
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <a href="?pagina=datos_fiscales" class="btn btn-danger me-5" id="btn_cancelar_datos_fiscales_">Cancelar</a>
-                                    <button type="button" id="btn_modificar_datos_fiscales" class="btn btn-primary btn-sm">
+                                    <button type="button" id="btn_modificar_datos_fiscales" datos_fiscales_id="<?= $datos_fiscales['id'] ?? '' ?>" class="btn btn-primary btn-sm">
                                         <span class="indicator-label">Guardar datos</span>
                                         <span class="indicator-progress">Porfavor espere...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
