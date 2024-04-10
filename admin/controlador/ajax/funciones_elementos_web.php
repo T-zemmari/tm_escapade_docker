@@ -16,7 +16,7 @@ function guardar_nuevo_elemento($datos)
     if (mysql_num_rows($sql) > 0) {
         $info_guardado['existe'] = true;
     } else {
-        $sql_guardar = "INSERT INTO elementos_web SET titulo_elemento='" . mysql_esc(trim($datos['nombre_elemento'])) . "',es_banner='".mysql_esc($datos['es_banner'])."', ref_elemento_id='" . mysql_esc($datos['ref_elemento_id']) . "' , ref_elemento_clase='" . mysql_esc($datos['ref_elemento_clase']) . "',activo ='" . mysql_esc($datos['select_estado']) . "',lugar_web='" . mysql_esc($datos['select_lugar_web']) . "',tipo='" . mysql_esc($datos['select_tipo']) . "',contenido='" . mysql_esc(trim($datos['contenido'])) . "',created_at='" . mysql_esc($fecha) . "',updated_at='" . mysql_esc($fecha) . "' ";
+        $sql_guardar = "INSERT INTO elementos_web SET titulo_elemento='" . mysql_esc(trim($datos['nombre_elemento'])) . "',es_banner='" . mysql_esc($datos['es_banner']) . "', ref_elemento_id='" . mysql_esc($datos['ref_elemento_id']) . "' , ref_elemento_clase='" . mysql_esc($datos['ref_elemento_clase']) . "',activo ='" . mysql_esc($datos['select_estado']) . "',lugar_web='" . mysql_esc($datos['select_lugar_web']) . "',tipo='" . mysql_esc($datos['select_tipo']) . "',contenido='" . mysql_esc(trim($datos['contenido'])) . "',created_at='" . mysql_esc($fecha) . "',updated_at='" . mysql_esc($fecha) . "' ";
         //$info_guardado['sql'] = $sql_guardar;
         if (mysql_query($sql_guardar)) $info_guardado['guardar'] = true;
     }
@@ -180,35 +180,38 @@ if (isset($_POST['accion']) && $_POST['accion'] != '') {
 
 
         case 'modificar_media_elemento':
-
             $respuesta = [];
             $respuesta['status'] = 'error';
             $respuesta['datos_post'] = [];
             $respuesta['info_guardado'] = '';
 
-            $elemento_id = $_POST['elemento_id'] ?? '';
-            $tipo = $_POST['tipo'] ?? '';
+            try {
+                $elemento_id = $_POST['elemento_id'] ?? '';
+                $tipo = $_POST['tipo'] ?? '';
 
-            $respuesta['datos_post']['elemento_id'] = $elemento_id;
-            $respuesta['datos_post']['tipo'] = $tipo;
+                $respuesta['datos_post']['elemento_id'] = $elemento_id;
+                $respuesta['datos_post']['tipo'] = $tipo;
 
-            if ($elemento_id && $tipo) {
+                if ($elemento_id && $tipo) {
+                    $carpeta_uploads = '../../../admin/uploads/' . ($tipo === 'img' ? 'imgs/' : 'vids/');
+                    $nombre_archivo = time() . '_' . uniqid() . '_' . $_FILES['archivo']['name'];
+                    $ruta_archivo = $carpeta_uploads . $nombre_archivo;
 
-                $carpeta_uploads = '../../../admin/uploads/' . ($tipo === 'img' ? 'imgs/' : 'vids/');
-
-                $nombre_archivo =$nombre_imagen = time() . '_' . uniqid() . '_' . $_FILES['archivo']['name'];
-                $ruta_archivo = $carpeta_uploads . $nombre_archivo;
-
-                if (move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta_archivo)) {
-                    $nueva_url = '/admin/uploads/' . ($tipo === 'img' ? 'imgs/' : 'vids/') . $nombre_archivo;
-                    $datos = [];
-                    $datos['contenido'] = $nueva_url;
-                    $datos['id'] = $elemento_id;
-                    $respuesta['info_guardado']  = editar_contenido_elemento($datos);
-                    $respuesta['nueva_url']  = $nueva_url;
-                    $respuesta['tipo']  = $tipo;
-                    if ($respuesta['info_guardado']) $respuesta['status'] = 'success';
+                    if (move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta_archivo)) {
+                        $nueva_url = '/admin/uploads/' . ($tipo === 'img' ? 'imgs/' : 'vids/') . $nombre_archivo;
+                        $datos = [];
+                        $datos['contenido'] = $nueva_url;
+                        $datos['id'] = $elemento_id;
+                        $respuesta['info_guardado'] = editar_contenido_elemento($datos);
+                        $respuesta['nueva_url'] = $nueva_url;
+                        $respuesta['tipo'] = $tipo;
+                        if ($respuesta['info_guardado']) $respuesta['status'] = 'success';
+                    }
                 }
+            } catch (Exception $e) {
+                // Manejar la excepción de manera adecuada
+                $respuesta['status'] = 'error';
+                $respuesta['message'] = $e->getMessage();
             }
 
             echo json_encode($respuesta);

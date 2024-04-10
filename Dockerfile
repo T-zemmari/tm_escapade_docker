@@ -47,3 +47,6 @@ EXPOSE 80
 
 # Reiniciar Apache al iniciar el contenedor
 CMD ["apachectl", "-D", "FOREGROUND"]
+
+# Ajusta la configuración de PHP para aumentar el tamaño máximo del cuerpo de las solicitudes POST
+RUN echo "post_max_size = 100M" > /usr/local/etc/php/conf.d/custom.ini
