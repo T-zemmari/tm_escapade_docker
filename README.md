@@ -47,5 +47,5 @@ docker-compose up --build
 ```
 
 3. Si todo sale bien podras acceder a la app desde http://localhost :
-4. Una vez accedas a http://localhost quizas tengas algun error por culpa de  la base de datos con que lo primero seria entrar a phpmyadmin en localhost:8082 y importar la tabla de prueba que se encuentra en /utils/tablas_ejemplos/ :
+4. Una vez accedas a http://localhost quizas tengas algun error por culpa de  la base de datos con que lo primero seria entrar a phpmyadmin en http://localhost:8082 y importar la tabla de prueba que se encuentra en /utils/tablas_ejemplos/ :
 
