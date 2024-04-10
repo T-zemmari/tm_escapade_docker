@@ -46,9 +46,9 @@ composer install
 docker-compose up --build
 ```
 
-3. Si todo sale bien podras acceder a la app desde http://localhost : [Tambien se encuentran en el archivo .env.]
+3. Si todo sale bien podras acceder a la app desde http://localhost : 
 4. Una vez accedas a la app quizas tengas algun error por culpa de la base de datos, con que lo primero seria entrar a phpmyadmin desde http://localhost:8082 y importar la tabla de prueba que se encuentra en : utils/tablas_ejemplos.
-5. Las credenciales de la base de datos : 
+5. Las credenciales de la base de datos : (Tambien se encuentran en el archivo .env)
 
 ```bash
 User:test_user,
