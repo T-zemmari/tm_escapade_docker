@@ -56,3 +56,13 @@ Pass:test_user_2024
 ```
 
 Tambien se encuentran en el archivo .env.
+
+
+6. Para usar el panel administrador debes ir a http://localhost/admin/: 
+
+-Para crear una cuenta debes introducir el siguiente codigo de registro.
+```bash
+Codigo de registro:Ta00,
+```
+
+
