@@ -120,7 +120,7 @@ var KTSignupGeneral = function () {
         };
 
         // Make Ajax request
-        axios.post('controlador/ajax/login_registro.php', data)
+        axios.post('admin/controlador/ajax/login_registro.php', data)
             .then(function (response) {
                 // Handle successful response
                 console.log(response);
