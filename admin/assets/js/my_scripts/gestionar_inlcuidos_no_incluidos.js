@@ -31,7 +31,7 @@ function fn_eliminar_item_incluido_o_no_incluido(id) {
                             html: `<h4 style="margin-top:25px"><strong>Item eliminado correctamente</strong></h4>`,
                             icon: "success",
                         });
-                        $(`#tr_fila_servicios_incluidos_o_no_incluidos_${id}`).hide();
+                        $(`#tr_fila_servicio_incluido_o_no_incluido_${id}`).hide();
                         // if ($(`.contenedor_media_${id}`).length === 0) {
                         //     $(`#addImageBtn_${id}`).show();
                         // }
