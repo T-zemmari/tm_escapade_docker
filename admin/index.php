@@ -130,6 +130,8 @@ License: For each use you must have a valid license purchased only from above li
     <script src="assets/js/custom/utilities/modals/users-search.js"></script>
     <script src="assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js"></script>
     <script src="assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
+    <script src="assets/js/my_scripts/validar_dni_cif_nie.js"></script>
+    <script src="assets/js/my_scripts/funciones_datos_ficales.js"></script>
 
 
     <!--end::Custom Javascript-->
