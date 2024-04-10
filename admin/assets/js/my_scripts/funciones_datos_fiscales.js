@@ -99,13 +99,13 @@ function editar_datos_fiscales(id) {
     });
 }
 
-function validar_documento(id=null) {
+function validar_documento(id = null) {
 
     let tipo_documento = $(`#select_tipo_de_documento`).val();
     let documento = $(`#documento_id`).val();
     let mensajeContainer = $(`#documento_id`).siblings('.fv-plugins-message-container');
 
-    if (id!=undefined && id != null && id!='') {
+    if (id != undefined && id != null && id != '') {
         tipo_documento = $(`#select_tipo_de_documento_${id}`).val();
         documento = $(`#documento_id_${id}`).val();
         mensajeContainer = $(`#documento_id_${id}`).siblings('.fv-plugins-message-container');

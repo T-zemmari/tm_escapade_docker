@@ -19,7 +19,7 @@ function suscribirse() {
         return;
     }
 
-    $.post('/controlador/ajax/funciones_suscribirse.php', {
+    $.post('/admin/controlador/ajax/funciones_suscribirse.php', {
         'accion': 'cliente_suscripcion',
         'email': email,
     }, function (result) {

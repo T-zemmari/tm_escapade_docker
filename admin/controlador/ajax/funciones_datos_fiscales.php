@@ -137,10 +137,10 @@ function bn_editar_direccion_fiscal($datos)
             $result = mysql_query($sql);
             while ($fetch_lite = mysql_fetch_assoc($result)) :
                 if ($fetch_lite['id'] == $datos['adress_id']) {
-                    $sql_update="UPDATE address_empresa SET es_principal=1 WHERE id='" . mysql_esc($fetch_lite['id']) . "' LIMIT 1 ";
+                    $sql_update = "UPDATE address_empresa SET es_principal=1 WHERE id='" . mysql_esc($fetch_lite['id']) . "' LIMIT 1 ";
                     mysql_query($sql_update);
-                }else{
-                    $sql_update="UPDATE address_empresa SET es_principal=0 WHERE id='" . mysql_esc($fetch_lite['id']) . "' LIMIT 1 ";
+                } else {
+                    $sql_update = "UPDATE address_empresa SET es_principal=0 WHERE id='" . mysql_esc($fetch_lite['id']) . "' LIMIT 1 ";
                     mysql_query($sql_update);
                 }
             endwhile;
