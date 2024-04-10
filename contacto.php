@@ -150,7 +150,7 @@
                         </div>
                         <div class="col-xl-6 col-md-12 col-sm-12">
                            <label for="total_ninyos_menores_de_12" class="form-label mt-2 custom_todo_blanco">Total menores de 12 años<span class="text-danger"></span></label>
-                           <input type="numbre" class="form-control custom_text_font_size" id="total_ninyos_menores_de_12" placeholder="Menores de 12 años" name="total_ninyos_menores_de_12" value="<?= $_POST['total_niños_menores_de_12'] ?? '' ?>">
+                           <input type="number" class="form-control custom_text_font_size" id="total_ninyos_menores_de_12" placeholder="Menores de 12 años" name="total_ninyos_menores_de_12" value="<?= $_POST['total_niños_menores_de_12'] ?? '' ?>">
                         </div>
 
                         <div class="col-12 mt-3">

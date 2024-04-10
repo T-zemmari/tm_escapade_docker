@@ -7,7 +7,122 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
-$mensaje_enviar_email='';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
+$user_info = $_SESSION['info_user'] ?? [];
+//echo '<pre>'; print_r($user_info); echo '</pre>';exit();
+
+$email_error = false;
+$mensaje_enviar_email = '';
+
+if (isset($_POST['enviar_email'])) {
+    if (ES_DEBUG == 1) {
+        $email_error = true;
+        $mensaje_enviar_email = 'No se puede enviar el email desde local';
+    } else {
+        // Validar que los campos obligatorios estén completos
+        $name = $_POST["name"] ?? '';
+        $phone = $_POST["phone"] ?? '';
+        $email = $_POST["email"] ?? '';
+        $message = $_POST["message"] ?? '';
+        $asunto = $_POST["asunto"] ?? '';
+        $fecha_desde = $_POST["fecha_desde"] ?? '';
+        $fecha_hasta = $_POST["fecha_hasta"] ?? '';
+
+        if ($fecha_desde != '') $fecha_desde = $fecha_desde . ' 00:00:00';
+        if ($fecha_hasta != '') $fecha_hasta = $fecha_hasta . ' 23:59:59';
+
+        $HTML = '';
+
+        if (empty($name) || empty($phone) || empty($email) || empty($message) || empty($asunto)) {
+            $mensaje_enviar_email = "¡Por favor completa todos los campos!";
+            $email_error = true;
+        } else {
+            $HTML = <<<EOD
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de llamada</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Solicitud de llamada</h2>
+        <p><strong>Nombre:</strong> $name</p>
+        <p><strong>Teléfono:</strong> $phone</p>
+        <p><strong>Correo electrónico:</strong> $email</p>
+        <p><strong>Mensaje:</strong><br> $message</p>
+        <p><strong>Fechas:</strong><br>Desde: $fecha_desde<br>Hasta: $fecha_hasta</p>
+    </div>
+</body>
+</html>
+EOD;
+
+            // Configuración para el correo
+            $to = "info@escapade.com";
+            $subject = $asunto;
+
+            // Configuración de PHPMailer
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = 'smtp.example.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'user@example.com';
+            $mail->Password = 'secret';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port = 465;
+
+            // Destinatarios y contenido del correo
+            $mail->setFrom($email);
+            $mail->addAddress($to);
+            $mail->Subject = $subject;
+            $mail->isHTML(true);
+            $mail->Body = $HTML;
+
+            try {
+                // Envío del correo
+                $mail->send();
+                $mensaje_enviar_email = "¡Correo enviado con éxito!";
+                $email_error = false;
+            } catch (Exception $e) {
+                $mensaje_enviar_email = "Error al enviar el correo. Por favor, inténtalo nuevamente. Detalles: {$mail->ErrorInfo}";
+                $email_error = true;
+            }
+        }
+    }
+}
+
+
+
 
 ?>
 
