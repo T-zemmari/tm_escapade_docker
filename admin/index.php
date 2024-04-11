@@ -142,6 +142,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="assets/js/my_scripts/funciones_elementos_web.js"></script>
     <script src="assets/js/my_scripts/funciones_servicios_1.js"></script>
     <script src="assets/js/my_scripts/gestionar_inlcuidos_no_incluidos.js"></script>
+    <script src="assets/js/my_scripts/funciones_complementos.js"></script>
 
 
     <!--end::Custom Javascript-->
