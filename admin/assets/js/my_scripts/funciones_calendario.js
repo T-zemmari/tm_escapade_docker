@@ -117,8 +117,8 @@ var KTGeneralFullCalendarLocalesDemos = function () {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-    if(document.getElementById('calendario_uno_customizado')){
-      KTGeneralFullCalendarLocalesDemos.init();  
+    if (document.getElementById('calendario_uno_customizado')) {
+        KTGeneralFullCalendarLocalesDemos.init();
     }
-    
+
 });
