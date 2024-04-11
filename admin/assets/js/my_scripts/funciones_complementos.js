@@ -385,7 +385,7 @@ function fn_mostrar_formulario_modificar_complemento(complemento_id) {
                                 <select class="form-select mb-2" name="select_estado_complemento" id="select_estado_complemento_${info.id}" required>
                                     <option value="">Seleccionar</option>
                                     <option value="1" ${info.active == 1 ? 'selected' : ''}>Activo</option>
-                                    <option value="0" ${info.active == 1 ? 'selected' : ''}>No activo</option>
+                                    <option value="0" ${info.active == 0 ? 'selected' : ''}>No activo</option>
                                 </select>
                                 <div class="text-muted fs-7">Selecciona el estado del complemento</div>
                             </div>
