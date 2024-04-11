@@ -170,7 +170,7 @@
                         <div class="col-12 col-sm-6">
                            <div class="mb-4 mb-sm-0">
                               <div class="mb-3 text-primary">
-                                 <div style="width:50px;height:50px;background-image: url('./assets/images/iconos/icono_reloj_1.png');background-position:center;background-size:cover"></div>
+                                 <div style="width:50px;height:50px;background-image: url('./assets/images/iconos/icono_phone_1.png');background-position:center;background-size:cover"></div>
                               </div>
                               <div>
                                  <h4 class="mb-2 custom_todo_blanco">Teléfono</h4>
@@ -200,7 +200,7 @@
                      </div>
                      <div>
                         <div class="mb-3 text-primary">
-                           <div style="width:50px;height:50px;background-image: url('./assets/images/iconos/icono_phone_1.png');background-position:center;background-size:cover"></div>
+                           <div style="width:50px;height:50px;background-image: url('./assets/images/iconos/icono_reloj_1.png');background-position:center;background-size:cover"></div>
                         </div>
                         <div>
                            <h4 class="mb-2 custom_todo_blanco">Nuestro horario</h4>
@@ -208,7 +208,7 @@
                            <hr class="w-50 mb-3 border-dark-subtle">
                            <div class="d-flex mb-1">
                               <p class="text-secondary fw-bold mb-0 me-5 custom_todo_blanco">Lun - Vie</p>
-                              <p class="text-secondary mb-0 custom_todo_blanco">&nbsp &nbsp  9:00h - 17:00h</p>
+                              <p class="text-secondary mb-0 custom_todo_blanco">&nbsp &nbsp 9:00h - 17:00h</p>
                            </div>
                            <div class="d-flex">
                               <p class="text-secondary fw-bold mb-0 me-5 custom_todo_blanco">Sab - Dom</p>
