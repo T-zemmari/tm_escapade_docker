@@ -1015,3 +1015,162 @@ function renderizar_formulario_modificar_producto(info) {
     $(`#body_modal_contenedor_formulario_modificar`).html(HTML_FORMULARIO);
     $(`#modal_modificar_producto`).modal('show');
 }
+
+
+function fn_modificar_producto(producto_id) {
+    // Obtener los valores del formulario
+    let producto_nombre = $(`#producto_nombre_${producto_id}`).val();
+    let descripcion_corta = $(`#descripcion_corta_${producto_id}`).val();
+    let producto_descripcion = $(`#producto_descripcion_${producto_id}`).val();
+    let select_categoria = $(`#select_categoria_${producto_id}`).val();
+    let select_producto_estado = $(`#select_producto_estado_${producto_id}`).val();
+    let precio_de_coste = $(`#precio_de_coste_${producto_id}`).val();
+    let pvr = $(`#pvr_${producto_id}`).val();
+    let precio_de_venta = $(`#precio_de_venta_${producto_id}`).val();
+    let stock_minimo = $(`#stock_minimo_${producto_id}`).val();
+    let ean_producto = $(`#ean_producto_${producto_id}`).val();
+    let select_mostrar_en_web = $(`#select_mostrar_en_web_${producto_id}`).val();
+    let select_descatalogado = $(`#select_producto_descatalogada_${producto_id}`).val();
+    let select_producto_destacado = $(`#select_producto_destacado_${producto_id}`).val();
+    let cantidad_stock = $(`#modificar_stock_${producto_id}`).val();
+    console.log("modificar_stock: ", cantidad_stock);
+
+
+    // Validaciones de campos
+    
+    if (producto_nombre.trim() === "") {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>Por favor, ingresa el nombre del producto.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (descripcion_corta.trim() === "") {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>Por favor, ingresa una descripción corta del producto.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (producto_descripcion.trim() === "") {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>Por favor, ingresa una descripción del producto.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (select_categoria.trim() === "") {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>Por favor, selecciona una categoría.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (select_producto_estado === "") {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>Por favor, selecciona el estado del producto.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (precio_de_coste.trim() === "" || isNaN(precio_de_coste.trim()) || precio_de_coste.trim() <= 0) {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>El precio de coste tiene que ser numérico y mayor o igual a 0.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (pvr.trim() === "" || isNaN(pvr.trim()) || pvr.trim() <= 0) {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>El PVR tiene que ser numérico y mayor o igual a 0.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (precio_de_venta.trim() === "" || isNaN(precio_de_venta.trim()) || precio_de_venta.trim() <= 0) {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>El precio de venta tiene que ser numérico y mayor o igual a 0.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (select_mostrar_en_web.trim() === "") {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>Por favor, selecciona mostrar en la web..</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (stock_minimo.trim() === "" || isNaN(stock_minimo.trim()) || stock_minimo.trim() <= 0) {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>El stock mínimo tiene que ser numérico.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    if (cantidad_stock.trim() === "" || isNaN(cantidad_stock.trim()) || cantidad_stock.trim() < 0) {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>El importe stock tiene que ser numérico.</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+
+    // Crear un objeto con los datos del producto
+
+    let productoData = {
+        producto_nombre: producto_nombre,
+        descripcion_corta: descripcion_corta,
+        producto_destacado: select_producto_destacado,
+        producto_descripcion: producto_descripcion,
+        select_categoria: select_categoria,
+        select_producto_estado: select_producto_estado,
+        precio_de_coste: precio_de_coste,
+        pvr: pvr,
+        precio_de_venta: precio_de_venta,
+        stock_minimo: stock_minimo,
+        ean_producto: ean_producto,
+        select_mostrar_en_web: select_mostrar_en_web,
+        producto_id: producto_id,
+        producto_descatalogado: select_descatalogado,
+        cantidad_stock: cantidad_stock,
+       
+    };
+
+    // console.log("productoData: ", productoData);
+    // return;
+
+
+    try {
+        $.post('/admin/controlador/ajax/funciones_categorias_productos.php', {
+            'accion': 'modificar_producto',
+            'data': productoData
+        }, function (result) {
+            console.log(result);
+            let respuesta = JSON.parse(result);
+            if (respuesta) {
+                console.log('modificar_producto', respuesta);
+                if (respuesta.status != 'success') {
+
+                } else {
+                    window.location.reload();
+                }
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}
