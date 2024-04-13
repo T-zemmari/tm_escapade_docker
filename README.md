@@ -70,7 +70,6 @@ Codigo de registro:Ta00,
 
 ### Usuario
 
-![Portada](./assets/images/readme_imgs/Portada_2.png)
 ![Tours y circuitos](./assets/images/readme_imgs/Tours_y_circuitos_1.png)
 ![Formulario contacto](./assets/images/readme_imgs/Contacto_form_2.png)
 
