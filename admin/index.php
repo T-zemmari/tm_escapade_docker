@@ -146,6 +146,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="assets/js/my_scripts/funciones_admin.js"></script>
     <script src="assets/js/my_scripts/funciones_calendario.js"></script>
     <script src="assets/js/my_scripts/funciones_banner.js"></script>
+    <script src="assets/js/my_scripts/funciones_proveedor.js"></script>
 
 
 
