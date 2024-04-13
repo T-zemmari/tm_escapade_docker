@@ -1,4 +1,22 @@
   <style>
+      .scroll-to-top {
+          position: fixed;
+          bottom: 28px;
+          right: 116px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          text-align: center;
+          line-height: 50px;
+          cursor: pointer;
+          z-index: 9999;
+          display: none;
+          font-size: 25px;
+      }
+
       @media(max-width:768px) {
           .mail_text {
               font-size: 14px;
@@ -6,6 +24,11 @@
 
           .subscribe_bt a {
               font-size: 14px;
+          }
+
+          .scroll-to-top {
+              bottom: 28px !important;
+              right: 85px !important;
           }
       }
   </style>
@@ -39,7 +62,6 @@
                   bottom: 20px;
                   right: 70px;
                   z-index: 9999;
-                  /* Asegúrate de que el botón esté por encima de otros elementos */
               }
 
               .contenedor_botones_musica {
@@ -50,11 +72,7 @@
                   width: 100%;
               }
 
-              @media(max-width:768px) {
-                  .play-button-container {
-                      right: 5px !important;
-                  }
-              }
+            
           </style>
 
           <!-- Botón de reproducir/pausar -->
@@ -97,6 +115,9 @@
    </div>-->
   <!-- copyright section end -->
   <!-- Javascript files-->
+
+  <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/popper.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -113,6 +134,24 @@
   <script src="assets/js/jquery.magnific-popup.js"></script>
   <script src="assets/js/my_scripts/script_enviar_email_presupuesto.js"></script>
   <script src="assets/js/my_scripts/mi_script_.js"></script>
+
+  <script>
+      function scrollToTop() {
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          });
+      }
+
+      window.addEventListener('scroll', function() {
+          let button = document.querySelector('.scroll-to-top');
+          if (window.scrollY > 200) {
+              button.style.display = 'block';
+          } else {
+              button.style.display = 'none';
+          }
+      });
+  </script>
 
   </body>
 

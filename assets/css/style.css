@@ -310,9 +310,7 @@ button {
 
 .menu_main li {
     float: left;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 18px;
+    font-size: 18px !important;
     text-transform: uppercase;
     padding-top: 10px;
     padding-bottom: 10px;

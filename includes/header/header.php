@@ -262,6 +262,7 @@ if ($info_header_background != '') {
    <link rel="stylesheet" href="assets/owlcarousel/assets/owl.theme.default.min.css">
    <!--<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">-->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
    <link rel="stylesheet" href="assets/css/magnific_pop_up.css">
    <link rel="stylesheet" href="assets/css/animate.min.css">
    <link rel="stylesheet" href="assets/css/tm_escapade.css">
@@ -305,7 +306,7 @@ if ($info_header_background != '') {
                         <a class="nav-link " href="/tienda">Tienda</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link " href="/contacto">Contacta-nos</a>
+                        <a class="nav-link " href="/contacto">Contacto</a>
                      </li>
                      <li>
                         <?php if (!isset($_SESSION['info_user']) || empty($_SESSION['info_user'])) : ?>
@@ -333,12 +334,12 @@ if ($info_header_background != '') {
             </div>
             <div class="menu_main">
                <ul>
-                  <li class="active"><a href="/">Portada</a></li>
-                  <li><a href="/sobre_nosotros">Sobre nosotros</a></li>
-                  <li><a href="/tours_y_circuitos">Tours y circuitos</a></li>
-                  <li><a href="/para_empresas">Para empresas</a></li>
-                  <li><a href="/tienda">Tienda</a></li>
-                  <li><a href="/contacto">Contacta-nos</a></li>
+                  <li class="active li_nav_escritorio"><a href="/">Portada</a></li>
+                  <li class="li_nav_escritorio"><a href="/tours_y_circuitos">Tours y circuitos</a></li>
+                  <li class="li_nav_escritorio"><a href="/para_empresas">Para empresas</a></li>
+                  <li class="li_nav_escritorio"><a href="/tienda">Tienda</a></li>
+                  <li class="li_nav_escritorio"><a href="/contacto">Contacto</a></li>
+                  <li class="li_nav_escritorio"><a href="/sobre_nosotros">Sobre nosotros</a></li>
                   <li>
                      <?php if (isset($user_info['email']) && $user_info['email'] != '') : ?>
                         <div class="contenedor_img_carrito">

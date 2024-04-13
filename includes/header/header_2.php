@@ -199,6 +199,7 @@ if ($info_mostrar_form_contacto != '') {
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
     <!--<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/tm_escapade.css">
 </head>

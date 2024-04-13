@@ -9,7 +9,9 @@
   background-size: cover;
   cursor: pointer;
   position: relative;
+  right: -12px;
 }
+
 .contenedor_img_carrito {
   width: 30px;
   height: 30px;
@@ -20,6 +22,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
+}
+
+.li_nav_escritorio {
+  font-size: 10px !important;
 }
 
 .contenedor_img_avatar a,
@@ -37,6 +43,7 @@
   min-height: 100vh;
   padding: 250px;
 }
+
 .row_custom {
   margin-top: 80px !important;
 }
@@ -52,11 +59,13 @@
   height: 90%;
   padding: 20px;
 }
+
 .contenedor_registro_header {
   width: 100%;
   height: 10%;
   padding: 20px;
 }
+
 .contenedor_registro_body {
   width: 100%;
   height: 90%;
@@ -83,12 +92,14 @@
   background-color: #ccc;
   /*margin: 10px 0;*/
 }
+
 .divider_vertical {
   width: 1px;
   height: 100%;
   background-color: #ccc;
   margin: 10px 0;
 }
+
 .menu_user_avatar {
   list-style-type: none;
   padding: 5px !important;
@@ -98,6 +109,7 @@
   cursor: pointer;
   width: 100%;
 }
+
 .menu_user_avatar .menu_li_custom {
   font-size: 13px;
   padding: 8px 20px;
@@ -107,15 +119,66 @@
   border-radius: 0px;
   /* margin-top: 4px; */
 }
+
 .menu_user_avatar .menu_li_custom:hover {
   background-color: antiquewhite;
   border-radius: 0px;
 }
+
 .custom_menu_avatar_a {
   all: unset !important;
   width: 100%;
   height: 100%;
 }
+
 .custom_menu_avatar_a:hover {
   all: unset !important;
+}
+
+@media (min-width: 768px) and (max-width: 940px) {
+  .menu_main li {
+    float: left;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    font-size: 13px !important;
+  }
+
+  .menu_main li a {
+    color: #ffffff;
+    padding: 2px 15px !important;
+    border-radius: 5px !important;
+  }
+
+  .banner_taital {
+    font-size: 41px;
+  }
+
+  .carousel-inner {
+    background-color: unset !important;
+  }
+
+  .contenedor_img_avatar {
+    margin-top: -8px;
+  }
+
+}
+
+@media(max-width:768px) {
+  .play-button-container {
+    right: 5px !important;
+  }
+
+  .contenedor_botones_musica {
+    margin-right: 50px;
+  }
+
+  .scroll-to-top {
+    bottom: 32px;
+    right: 84px;
+  }
+
+  .carousel-inner {
+    background-color: unset !important;
+  }
+
 }
