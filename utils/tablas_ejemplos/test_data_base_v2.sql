@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `mostrar_temporizador` int(11) NOT NULL,
   `activo` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` int(11) NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `url_escritorio` (`url_escritorio`),
