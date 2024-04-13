@@ -1037,7 +1037,7 @@ function fn_modificar_producto(producto_id) {
 
 
     // Validaciones de campos
-    
+
     if (producto_nombre.trim() === "") {
         Swal.fire({
             html: `<h4 style="margin-top:25px"><strong>Por favor, ingresa el nombre del producto.</strong></h4>`,
@@ -1173,4 +1173,151 @@ function fn_modificar_producto(producto_id) {
     }
 
 
+}
+
+function fn_eliminar_producto(producto_id) {
+
+    if (producto_id == undefined || producto_id == null || isNaN(producto_id)) {
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>Operación fallida (El producto no ha sido eliminado)</strong></h4>`,
+            icon: "error",
+        });
+        return false;
+    }
+
+    Swal.fire({
+        html: `<h4 style="margin-top:25px"><strong>¿ Seguro que quieres eliminar  ?</strong></h4>`,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "Eliminar",
+        denyButtonText: `Cancelar`
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+
+            $.post('/admin/controlador/ajax/funciones_categorias_productos.php', {
+                'producto_id': producto_id,
+                'accion': 'eliminar_producto',
+            }, function (response) {
+                console.log(response);
+                let respuesta = JSON.parse(response);
+                if (respuesta) {
+                    console.log(respuesta);
+                    let status = respuesta.status;
+                    if (status != 'success') {
+                        Swal.fire({
+                            html: `<h4 style="margin-top:25px"><strong>Ha ocurrido un error ! intentalo mas tarde o contacta con el administrador.</strong></h4>`,
+                            icon: "error",
+                        });
+                    } else {
+                        $(`#tr_producto_${producto_id}`).hide();
+                        Swal.fire({
+                            html: `<h4 style="margin-top:25px"><strong>El producto ha sido eliminada correctamente</strong></h4>`,
+                            icon: "success",
+                        });
+                    }
+                }
+            });
+        }
+    });
+}
+
+function modificar_imagen_principal_producto(producto_id) {
+    console.log('click');
+
+    $(`#input_modificar_imagen_principal_producto_${producto_id}`).click();
+
+
+    $(`#input_modificar_imagen_principal_producto_${producto_id}`).on('change', function () {
+
+        let nuevaImagen = this.files[0];
+
+        Swal.fire({
+            html: `<h4 style="margin-top:25px"><strong>¿ Modificarás la imagen principal ?</strong></h4>`,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Modificar",
+            denyButtonText: `Cancelar`
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                let formData = new FormData();
+                formData.append('imagen_principal', nuevaImagen);
+                formData.append('producto_id', producto_id);
+                formData.append('accion', 'modificar_imagen_principal_producto');
+
+                // Realizar la petición AJAX
+
+                $.ajax({
+                    url: '/admin/controlador/ajax/funciones_categorias_productos.php',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        console.log(result);
+                        let resultado = JSON.parse(result);
+                        if (resultado) {
+                            console.log('RESULTADO modificar_imagen_principal_producto', resultado);
+                            if (resultado.status != 'success') {
+                                Swal.fire({
+                                    html: `<h4 style="margin-top:25px"><strong>Ha ocurrido un error! Inténtalo más tarde o contacta con el administrador.</strong></h4>`,
+                                    icon: "error",
+                                });
+                            } else {
+                                $(`#imagen_principal_actual_${producto_id}`).attr('src', `${resultado['nueva_url']}`);
+                                Swal.fire({
+                                    html: `<h4 style="margin-top:25px"><strong>La imagen principal ha sido modificada correctamente</strong></h4>`,
+                                    icon: "success",
+                                });
+                            }
+                        }
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    },
+                });
+            }
+        });
+    });
+}
+
+function eliminar_imagen_secundaria_producto(id) {
+
+    Swal.fire({
+        html: `<h4 style="margin-top:25px"><strong>¿ Quieres eliminar la imagen ?</strong></h4>`,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "Eliminar",
+        denyButtonText: `Cancelar`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post('/admin/controlador/ajax/funciones_categorias_productos.php', {
+                'media_id': id,
+                'accion': 'eliminar_imagen_producto',
+            }, function (result) {
+                console.log(result);
+                let resultado = JSON.parse(result);
+                if (resultado) {
+                    console.log('RESULTADO eliminar media producto', resultado);
+                    if (resultado.status != 'success') {
+                        Swal.fire({
+                            html: `<h4 style="margin-top:25px"><strong>Ha ocurrido un error ! intentalo mas tarde o contacta con el administrador.</strong></h4>`,
+                            icon: "error",
+                        });
+                    } else {
+                        Swal.fire({
+                            html: `<h4 style="margin-top:25px"><strong>Imagen eliminada correctamente</strong></h4>`,
+                            icon: "success",
+                        });
+                        $(`#contenedor_producto_media_${id}`).hide();
+                        // if ($(`.contenedor_media_${id}`).length === 0) {
+                        //     $(`#addImageBtn_${id}`).show();
+                        // }
+                    }
+                }
+            }
+            );
+        }
+    });
 }
